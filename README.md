@@ -2,31 +2,35 @@
 PRUEBA TÉCNICA Data Engineering - Telefónica - Ana Guerrero
 
 
-NOTA: Se ha configurado la tarea para que no se pida ninguna autenticación al entrar.
-NOTA: El DAG se ejecutará cada minuto porque así se ha programado (a no ser que se pause).
-NOTA: Con Python 3.8 parece que hay problemas a la hora de instalar apache-airflow; recomiendo actualizar la versión a Python 3.10
-
-Para ejecutar esta tarea serán necesarios los siguientes pasos:
-
-1. Tener un entorno local de Python (creamos el entorno virtual: python3 -m venv env).
-
-2. Activamos el entorno virtual con el comando: source env/bin/activate.
-
-4. Declaramos la variable de entorno necesaria ejecutando el comando: export AIRFLOW_HOME=/Users/<nombre_usuario>/Desktop/airflow-prueba/airflow (con la ruta personalizada correspondiente). Este paso es necesario para que no nos pida la autenticación al entrar.
-
-3. Instalamos Apache Airflow: 'pip install apache-airflow'. Una vez termine iniciamos la bbdd con el comando 'airflow db init'
+NOTE: The DAG will run every minute as scheduled (unless paused).
+NOTE: With Python 3.8 there seem to be problems installing apache-airflow; I recommend updating the version to Python 3.10
+NOTE: all the commands are for the MAC operating system, if you have any other look for the analogs in the relevant documentation.
 
 
-5. Accedemos al fichero que acaba de generarse con el nombre "webserver_config.py" y añadimos lo siguiente:
+To execute this task, the following steps will be necessary:
 
-* AUTH_ROLE_PUBLIC = 'Admin' (podemos descomentar el que ya viene)
+1. Have a local Python environment (we create the virtual environment: python3 -m venv env).
 
-5. Una vez esté todo instalado y configurado ejecutamos el comando 'airflow webserver' para desplegar la UI de Airflow y poder interactuar con la tarea creada.
+2. We activate the virtual environment with the command: source env/bin/activate.
 
-6. En este punto ya podemos acceder a la interfaz en la ruta "localhost:8080", dónde veremos nuestro DAG y algunos ejemplos.
+3. We declare the necessary environment variable by running the command: export AIRFLOW_HOME=/Users/<user_name>/Desktop/Airflow-DAG/airflow (with the corresponding custom path). This step is really important.
 
-7. En otra terminal, repitiendo el paso 2 y exportando la variable de entorno (export AIRFLOW_HOME=/Users/<nombre_usuario>/Desktop/airflow-prueba/airflow); ejecutamos 'airflow scheduler' para poder ejecutar nuestra tarea.
 
-8. Entramos en la interfaz, ejecutamos el DAG y podremos ver en los logs la siguiente frase actualizada:
+4. To prevent examples from being loaded by default, we run the following command: export AIRFLOW__CORE__LOAD_EXAMPLES=false
+
+5. We install Apache Airflow: 'pip install apache-airflow'. Once finished we start the bbdd with the command 'airflow db init'.
+
+
+6. We access the file that has just been generated with the name "webserver_config.py" and add the following:
+
+* AUTH_ROLE_PUBLIC = 'Admin'. This step is important so that we can enter without authentication. 
+
+5. Once everything is installed and configured, we execute the 'airflow webserver' command to display the Airflow UI and be able to interact with the created task.
+
+6. At this point we can already access the interface in the path "localhost:8080", where we will see our DAG (but we will not be able to execute it yet).
+
+7. In another terminal, repeating step 2 and exporting the environment variable (export AIRFLOW_HOME=/Users/<user_name>/Desktop/Airflow-DAG/airflow); we run 'airflow scheduler' to be able to execute our task.
+
+8. We enter the interface, execute the DAG and we can see the following updated phrase in the logs:
 
                   'the value of bitcoin is currently: 41,612.7631 USD'
